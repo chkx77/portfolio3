@@ -9,7 +9,6 @@ const Portfolio = () => {
   const [visibleSections, setVisibleSections] = useState(new Set());
   const sectionRefs = useRef({});
 
-  // Loading animation
   useEffect(() => {
     const messages = [
       'Inicializando sistema...',
@@ -34,7 +33,6 @@ const Portfolio = () => {
     return () => clearInterval(interval);
   }, []);
 
-  // Intersection observer for sections
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -54,7 +52,6 @@ const Portfolio = () => {
     return () => observer.disconnect();
   }, [showPortfolio]);
 
-  // Stars background effect
   useEffect(() => {
     if (!showPortfolio) return;
 
@@ -82,12 +79,10 @@ const Portfolio = () => {
       }, 10000);
     };
 
-    // Create initial stars
     for (let i = 0; i < 50; i++) {
       setTimeout(createStar, Math.random() * 2000);
     }
 
-    // Continue creating stars
     const starInterval = setInterval(createStar, 500);
     
     return () => clearInterval(starInterval);
@@ -112,13 +107,10 @@ const Portfolio = () => {
       return;
     }
 
-    // Crear el enlace mailto
     const mailtoLink = `mailto:matirom77@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(`De: ${email}\n\nMensaje:\n${message}`)}`;
     
-    // Abrir el cliente de correo
     window.location.href = mailtoLink;
     
-    // Reset form
     document.getElementById('contact-email').value = '';
     document.getElementById('contact-subject').value = '';
     document.getElementById('contact-message').value = '';
@@ -339,7 +331,6 @@ const Portfolio = () => {
       `}</style>
 
       <div className="max-w-6xl mx-auto px-6">
-        {/* Header */}
         <header className="text-center py-20">
           <h1 className="text-6xl font-bold bg-gradient-to-r from-blue-400 via-purple-500 to-emerald-400 bg-clip-text text-transparent mb-4">
             MATÍAS.EXE
@@ -349,7 +340,6 @@ const Portfolio = () => {
           </p>
         </header>
 
-        {/* Navigation */}
         <nav className="flex justify-center gap-3 mb-20 flex-wrap">
           {[
             { label: '👤 Sobre mí', id: 'sobre-mi' },
@@ -368,7 +358,6 @@ const Portfolio = () => {
           ))}
         </nav>
 
-        {/* About Section */}
         <section 
           ref={el => sectionRefs.current['sobre-mi'] = el}
           id="sobre-mi" 
@@ -403,7 +392,6 @@ const Portfolio = () => {
           </div>
         </section>
 
-        {/* Projects Section */}
         <section 
           ref={el => sectionRefs.current['proyectos'] = el}
           id="proyectos" 
@@ -455,7 +443,6 @@ const Portfolio = () => {
           </div>
         </section>
 
-        {/* Skills Section */}
         <section 
           ref={el => sectionRefs.current['skills'] = el}
           id="skills" 
@@ -490,7 +477,6 @@ const Portfolio = () => {
           </div>
         </section>
 
-        {/* Contact Section */}
         <section 
           ref={el => sectionRefs.current['contacto'] = el}
           id="contacto" 
@@ -585,7 +571,6 @@ const Portfolio = () => {
           </div>
         </section>
 
-        {/* Footer */}
         <footer className="text-center py-8 text-slate-400">
           <p>&copy; 2025 MATÍAS // DEV1990. Hecho con ❤️ y React.</p>
         </footer>
@@ -593,5 +578,6 @@ const Portfolio = () => {
     </div>
   );
 };
+
 
 export default Portfolio;
